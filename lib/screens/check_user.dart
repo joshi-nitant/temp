@@ -1,3 +1,5 @@
+import 'package:bazaar/screens/buyer/dashboard_buyer.dart';
+import 'package:bazaar/screens/seller/dashboard.dart';
 import 'package:flutter/material.dart';
 
 class CheckUser extends StatelessWidget {
@@ -54,29 +56,49 @@ class _CheckUserUIState extends State<CheckUserUI> {
                       direction: Axis.horizontal,
                       spacing: 20,
                       children: <Widget>[
-                        Column(
-                          children: <Widget>[
-                            Image.asset("assets/rs.png",height: 150,width: 150,),
-                            Text(
-                              "Seller",
-                              style: TextStyle(
-                                color:Color(0xFF739b21),
-                                fontSize: 25 
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Dashboard()));
+                          },
+                          child: Column(
+                            children: <Widget>[
+                              Image.asset(
+                                "assets/rs.png",
+                                height: 150,
+                                width: 150,
                               ),
+                              Text(
+                                "Seller",
+                                style: TextStyle(
+                                    color: Color(0xFF739b21), fontSize: 25),
                               ),
-                          ],
+                            ],
+                          ),
                         ),
-                        Column(
-                          children: <Widget>[
-                            Image.asset("assets/rice.png",height: 150,width: 150,),
-                            Text(
-                              "Buyer",
-                              style: TextStyle(
-                                color:Color(0xFF739b21),
-                                fontSize: 25 
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DashboardBuyer()));
+                          },
+                                                  child: Column(
+                            children: <Widget>[
+                              Image.asset(
+                                "assets/rice.png",
+                                height: 150,
+                                width: 150,
                               ),
+                              Text(
+                                "Buyer",
+                                style: TextStyle(
+                                    color: Color(0xFF739b21), fontSize: 25),
                               ),
-                          ],
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -90,21 +112,19 @@ class _CheckUserUIState extends State<CheckUserUI> {
                 alignment: FractionalOffset.bottomCenter,
                 child: Padding(
                   padding: EdgeInsets.all(10),
-                                  child: Wrap(
+                  child: Wrap(
                     spacing: 20,
-                         children: <Widget>[
+                    children: <Widget>[
                       Image.asset(
                         "assets/logo.png",
                         height: 50,
                         width: 50,
-                        ),
-                        Text(
-                          "Bazaar",
-                          style: TextStyle(
-                            color:Color(0xFF739b21),
-                             fontSize: 25
-                          ),
-                          )
+                      ),
+                      Text(
+                        "Bazaar",
+                        style:
+                            TextStyle(color: Color(0xFF739b21), fontSize: 25),
+                      )
                     ],
                   ),
                 ),

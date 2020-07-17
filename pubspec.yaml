@@ -26,7 +26,10 @@ dependencies:
   easy_localization: ^2.3.2
   translator: ^0.1.4
   wave: ^0.0.8
-  
+  dio: 
+  path: 
+  file_picker: 
+  http:
 
 dev_dependencies:
   flutter_test:
