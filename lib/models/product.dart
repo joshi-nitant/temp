@@ -1,8 +1,10 @@
 class Product{
 
-  int id;
-  String name,image,description;
+  String prod_id,quantity,price,location,breed;
 
-  Product(this.id,this.name,this.image,this.description);
+  Product(this.prod_id,this.quantity,this.price,this.location,this.breed);
+  
+
+  
 
 }

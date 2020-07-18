@@ -1,7 +1,8 @@
-
-import 'package:bazaar/models/product.dart';
+import 'package:bazaar/models/category.dart';
 import 'package:bazaar/models/utils.dart';
+import 'package:bazaar/screens/buyer/display_buyer.dart';
 import 'package:bazaar/screens/registration.dart';
+import 'package:bazaar/screens/seller/display.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -28,16 +29,16 @@ class DashboardUI extends StatefulWidget {
 
 class _DashboardUIState extends State<DashboardUI> {
 
-  Future<List<Product>> _getProduct() async{
-    var response =await  http.get(Utils.URL+"getProduct.php");
+  Future<List<Category>> _getCategory() async{
+    var response =await  http.get(Utils.URL+"getData.php",);
     var jsonData = json.decode(response.body);
-    List<Product> products = [];
+    List<Category> categories = [];
     for(var u in jsonData){
-      Product product = Product(u['id'], u['name'], u['image'],u['description']);
-      products.add(product);
+      Category category = Category(u['cat_id'], u['category_name'], u['category_image']);
+      categories.add(category);
     }
-    print(products.length);
-    return products;
+    print(categories.length);
+    return categories;
   }
 
   @override
@@ -46,11 +47,11 @@ class _DashboardUIState extends State<DashboardUI> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Bazaar",style: TextStyle(
-          color: Color(0xFF739b21),
+          color: Colors.white,
           fontSize: 25,
           ),),
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Color(0xFF739b21)),
+        
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       drawer: Drawer(
 
@@ -88,7 +89,7 @@ class _DashboardUIState extends State<DashboardUI> {
       ),
       
     body: FutureBuilder(
-        future: _getProduct(),
+        future: _getCategory(),
         builder: (BuildContext context,AsyncSnapshot snapshot){
 
           if(snapshot.data == null){
@@ -99,15 +100,45 @@ class _DashboardUIState extends State<DashboardUI> {
             );
           }
           
-          return ListView.builder(
+          return GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,childAspectRatio: (snapshot.data.length/(snapshot.data.length+1))),
             itemCount: snapshot.data.length,
             itemBuilder: (BuildContext context,int index){
             
-              return ListTile(
-                title: Text(snapshot.data[index].name),
-                //leading:Image.network(Utils.URL+"images/"+snapshot.data[index].image),
-                //subtitle: Text(snapshot.data[index].description),
-                //isThreeLine: true,
+              return GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>DisplayBuyer(snapshot.data[index].cat_id)));
+                },
+                              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                  Container(
+                    
+                    width: 150,
+                    height: 150,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: NetworkImage(Utils.URL+"images/"+snapshot.data[index].category_image,),
+                      )
+                    ),
+                      
+                    
+                  ),
+                  
+                  Padding(
+                    padding: EdgeInsets.all(8),
+                                      child: Text(snapshot.data[index].category_name,style: TextStyle(
+                        fontSize: 22,
+                        color: Color(0xFF739b21),
+                        fontWeight: FontWeight.bold
+                        
+                      ),),
+                  ),
+                  ],
+                ),
               );
             },
             
