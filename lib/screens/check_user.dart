@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+
 import 'package:bazaar/screens/buyer/dashboard_buyer.dart';
 import 'package:bazaar/screens/seller/dashboard.dart';
-import 'package:flutter/material.dart';
 
 class CheckUser extends StatelessWidget {
   @override
@@ -79,13 +80,13 @@ class _CheckUserUIState extends State<CheckUserUI> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: (){
+                          onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => DashboardBuyer()));
                           },
-                                                  child: Column(
+                          child: Column(
                             children: <Widget>[
                               Image.asset(
                                 "assets/rice.png",

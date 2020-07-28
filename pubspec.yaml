@@ -31,7 +31,8 @@ dependencies:
   file_picker: 
   http:
   flutter_datetime_picker: 
-
+  dropdown_formfield: ^0.1.2
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

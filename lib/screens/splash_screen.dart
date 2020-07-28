@@ -1,7 +1,8 @@
 import 'dart:async';
 
-import 'package:bazaar/screens/check_user.dart';
 import 'package:flutter/material.dart';
+
+import 'package:bazaar/screens/check_user.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
@@ -16,27 +17,25 @@ class Splash extends StatelessWidget {
 }
 
 class SplashUI extends StatefulWidget {
-  
   @override
   _SplashUIState createState() => _SplashUIState();
 }
 
 class _SplashUIState extends State<SplashUI> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
     startTimer();
   }
-  startTimer() async{
+
+  startTimer() async {
     var duration = Duration(seconds: 5);
     return Timer(duration, route);
-
   }
 
-  route(){
-    Navigator.pushReplacement(context, MaterialPageRoute(
-      builder: (context)=>CheckUser()
-      ));
+  route() {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => CheckUser()));
   }
 
   @override
@@ -67,7 +66,6 @@ class _SplashUIState extends State<SplashUI> {
               ),
             ),
           ),
-          
           Expanded(
             child: Align(
               alignment: FractionalOffset.bottomCenter,

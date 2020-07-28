@@ -1,11 +1,12 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:bazaar/models/requirement.dart';
 import 'package:bazaar/models/utils.dart';
 import 'package:bazaar/screens/registration.dart';
 import 'package:bazaar/screens/seller/add_products.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class Display extends StatelessWidget {
   String cat_id;
@@ -100,7 +101,6 @@ class _DisplayUIState extends State<DisplayUI> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          
           onPressed: () {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => AddProduct(cat_id)));
@@ -221,7 +221,6 @@ class _DisplayUIState extends State<DisplayUI> {
                   ),
                 ),
               );*/
-
             }));
   }
 }
